@@ -1,0 +1,14 @@
+.home-container {
+  padding-top: 5%;
+}
+
+/* Media Querys */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  #welcome-title {
+    font-size: 1.5rem !important;
+  }
+}

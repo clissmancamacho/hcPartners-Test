@@ -1,0 +1,12 @@
+{
+  "name": "hcpartners",
+  "version": "1.0.0",
+  "description": "HC Partners Test",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run frontend && npm run backend",
+    "frontend": "cd frontend/ && npm start &",
+    "backend" : "cd backend/ && npm run start-dev &"  },
+  "author": "Clissman J. Camacho",
+  "license": "MIT"
+}

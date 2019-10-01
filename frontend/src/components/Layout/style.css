@@ -1,0 +1,47 @@
+#components-layout-demo-top .logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.main-title {
+  color: white !important;
+  margin-top: 1% !important;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#content {
+  padding: 0 5rem; 
+  height: calc(80vh);
+}
+
+/* Media Querys */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  
+  .main-title {
+    color: white !important;
+    margin-top: 6% !important;
+    font-size: 1.3rem !important;
+  }
+
+  #logout-button {
+    margin-top: 2% !important;
+  }
+
+  #content {
+    padding: 0 1rem; 
+    height: calc(80vh);
+  }
+
+}
