@@ -1,12 +1,9 @@
-DROP DATABASE IF EXISTS db_hcPartners
-
-CREATE DATABASE db_hcPartners
-
-USE db_hcPartners
 
 --
 -- Base de datos: `db_hcPartners`
 --
+CREATE DATABASE IF NOT EXISTS `db_hcPartners` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db_hcPartners`;
 
 -- --------------------------------------------------------
 
@@ -20,7 +17,7 @@ CREATE TABLE `tickets` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -30,18 +27,10 @@ CREATE TABLE `tickets` (
 
 CREATE TABLE `type_users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-
---
--- Volcado de datos para la tabla `type_users`
---
-
-INSERT INTO `type_users` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
-(1, 'admin', '2019-09-30 03:26:33', '2019-09-30 03:26:33'),
-(2, 'user', '2019-09-30 03:26:37', '2019-09-30 03:26:37')
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -51,20 +40,14 @@ INSERT INTO `type_users` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `typeUserId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`, `typeUserId`) VALUES
-(1, 'HC Admin', 'admin@example.com', '$2a$10$R6HcbbjGbyd6wqtnFvHK3e1GfEOffmyADVgmrQ1TlmkaUKl8aDeNK', '2019-09-30 03:26:43', '2019-09-30 03:26:43', 1)
 
 --
 -- Índices para tablas volcadas
@@ -75,20 +58,20 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`
 --
 ALTER TABLE `tickets`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `userId` (`userId`)
+  ADD KEY `userId` (`userId`);
 
 --
 -- Indices de la tabla `type_users`
 --
 ALTER TABLE `type_users`
-  ADD PRIMARY KEY (`id`)
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `typeUserId` (`typeUserId`)
+  ADD KEY `typeUserId` (`typeUserId`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -98,17 +81,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `type_users`
 --
 ALTER TABLE `type_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
@@ -117,10 +100,26 @@ ALTER TABLE `users`
 -- Filtros para la tabla `tickets`
 --
 ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`typeUserId`) REFERENCES `type_users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`typeUserId`) REFERENCES `type_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+--
+-- Volcado de datos para la tabla `type_users`
+--
+
+INSERT INTO `type_users` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+(1, 'admin', '2019-09-30 03:26:33', '2019-09-30 03:26:33'),
+(2, 'user', '2019-09-30 03:26:37', '2019-09-30 03:26:37');
+
+  --
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`, `typeUserId`) VALUES
+(1, 'HC Admin', 'admin@example.com', '$2a$10$R6HcbbjGbyd6wqtnFvHK3e1GfEOffmyADVgmrQ1TlmkaUKl8aDeNK', '2019-09-30 03:26:43', '2019-09-30 03:26:43', 1);
